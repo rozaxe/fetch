@@ -1,0 +1,11 @@
+[package]
+name = "fetch"
+version = "0.1.0"
+authors = ["Axel Rozo Brézillac <axel@rozobrezillac.pro>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "^0.9.18"
+
+[dev-dependencies]
+mockito = "^0.17.1"
