@@ -2,11 +2,10 @@
 use reqwest;
 use regex::Regex;
 
-#[derive(Debug)]
-pub struct Error {}
+pub type Error = reqwest::Error;
 
-#[derive(Debug)]
-pub struct Response {}
+pub type Response = reqwest::Response;
+
 
 pub struct Request {
 	pub method: String,
@@ -65,8 +64,8 @@ impl Request {
         let builder = reqwest::Client::new().request(method, &self.url);
 
 	    let response = match builder.send() {
-		    Ok(_) => Ok(Response {}),
-		    Err(_) => Err(Error {}),
+		    Ok(response) => Ok(response),
+		    Err(err) => Err(err),
 	    };
 	    return response;
     }
