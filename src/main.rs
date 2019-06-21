@@ -1,14 +1,17 @@
 use std::env;
-use fetch::fetch;
+use fetch::Request;
 
 fn main() {
-	let args: Vec<_> = env::args().collect();
-	
-	if args.len() != 2 {
+	let args: Vec<String> = env::args().collect();
+    let mut args: Vec<&str> = args.iter().map(String::as_ref).collect();
+
+	if args.len() < 2 {
 		println!("usage: fetch url");
 		return;
     }
-    
-    let response = fetch(&args[1]);
+
+    args.remove(0);
+
+    let response = Request::from(&args).unwrap().fetch();
     println!("{:?}", response);
 }
