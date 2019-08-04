@@ -45,8 +45,8 @@ impl Request {
 		
 		for token in tokens {
 			match parse_token(token) {
-				Token::METHOD => method = token.to_uppercase(),
-				Token::URL => url = Some(to_full_url(token)),
+				Token::METHOD => method = format_method(token),
+				Token::URL => url = Some(format_url(token)),
 			}
 		}
 
@@ -86,3 +86,11 @@ pub fn is_method(potential: &str) -> bool {
 	return methods.contains(&potential.to_uppercase().as_str());
 }
 
+
+pub fn format_method(literal: &str) -> String {
+	return literal.to_uppercase();
+}
+
+pub fn format_url(literal: &str) -> String {
+	return to_full_url(literal);
+}
